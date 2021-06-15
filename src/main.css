@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px 150px 10px 150px;
+  }
+  
+  .grid-header-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #c9d1f5;
+    padding: 10px;
+  }
+  
+  .grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+  }
+  
+  .justify-left {
+    text-align: left
+  }
+  
+  .justify-end {
+    text-align: right;
+  }
+  
+  .justify-center {
+    text-align: center;
+  }
+  
+  .current-player {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .player-1 {
+    color: blue;
+  }
+
+  .player-2 {
+    color: red;
+  }
+  
+  .restart-button {
+    width: 15em;
+    height: 3em;
+    color: white;
+    background-color: #5168e9;
+    border: 0;
+  }
+  
+  .scoreboard {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(24, 21, 16);
+    font-weight: bold;
+  }
+
+  .card {
+    background-color: dodgerblue;
+    color: white;
+    font-size: 2rem;
+    padding: 2rem;
+    width: 80%;
+    height: 10rem;
+  }
+
+  .transparent {
+    color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0);
+  }
+
+  .pad {
+    padding: 1rem;
+  }
+  
+  .hide-card {
+    visibility: hidden;
+  }
+  
+  .card-back {
+    border-radius: 10px;
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #02031655, #020316 );
+  }
+  
+  .card-front {
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .react-card-front {
+    position: unset !important;
+  }
+
+  .hidden {
+    display: none
+  }
