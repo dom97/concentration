@@ -6,6 +6,7 @@ import EndGame from './Components/endgame/EndGame';
 import './main.css';
 
 const PAIRS = 10
+const PLAYER_1 = 1
 const HIDDEN = -1
 const FACE_DOWN = false
 const DISPLAY_TIME = 800
@@ -58,7 +59,6 @@ class App extends PureComponent {
         if (this.state.numSelected === 2) {
           this.setState(prevState => ({ 
             numSelected: 1,
-            currentPlayer: prevState.currentPlayer * -1,
             pauseClick: true
            }));
           const prevCardId = this.state.prevCardId;
@@ -76,7 +76,7 @@ class App extends PureComponent {
       const updatedDeck = this.state.deck.slice();
       updatedDeck[card1Id] = HIDDEN;
       updatedDeck[card2Id] = HIDDEN;
-      if (this.state.currentPlayer > 0) {
+      if (this.state.currentPlayer === PLAYER_1) {
         this.setState(prevState => ({
           player1Score: prevState.player1Score + 1
         }))
@@ -98,17 +98,22 @@ class App extends PureComponent {
         }, DISPLAY_TIME);
       }
     } else {
-      const updatedFlipped = this.state.flippedArray.slice()
-      updatedFlipped[card1Id] = FACE_DOWN;
-      updatedFlipped[card2Id] = FACE_DOWN;
-      setTimeout(() => {
-        this.setState({ 
-          flippedArray: updatedFlipped,
-          pauseClick: false,
-        });
-      }, DISPLAY_TIME);
+      this.flipBackCards(card1Id, card2Id)
     }
   };
+
+  flipBackCards = (card1Id, card2Id) => {
+    const updatedFlipped = this.state.flippedArray.slice()
+    updatedFlipped[card1Id] = FACE_DOWN;
+    updatedFlipped[card2Id] = FACE_DOWN;
+    setTimeout(() => {
+      this.setState(prevState => ({ 
+        flippedArray: updatedFlipped,
+        currentPlayer: prevState.currentPlayer * -1,
+        pauseClick: false,
+      }));
+    }, DISPLAY_TIME);
+  }
 
   restartGame = () => {
     this.setState({
@@ -124,7 +129,7 @@ class App extends PureComponent {
     });
   };
 
-  isGameOver = () => {
+  EndGame = () => {
     return this.state.flippedArray.every((element, index, array) => element !== false);
   };
 
@@ -137,7 +142,11 @@ class App extends PureComponent {
           player1Score={this.state.player1Score}
           player2Score={this.state.player2Score}
         />
-       { this.isGameOver() ? <EndGame restartGame={this.restartGame} player1Score={this.state.player1Score} player2Score={this.state.player2Score} /> :
+       { this.EndGame() ? <EndGame
+        restartGame={this.restartGame}
+        player1Score={this.state.player1Score}
+        player2Score={this.state.player2Score}
+         /> :
        <div className="grid-container">
           {
             this.state.deck.map((cardNumber, index) => 

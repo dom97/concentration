@@ -1,4 +1,4 @@
-body {
+  body {
     margin: 0;
   }
   
@@ -12,7 +12,7 @@ body {
   .grid-header-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    background-color: #c9d1f5;
+    background-color: lightgrey;
     padding: 10px;
   }
   
@@ -46,10 +46,11 @@ body {
   }
   
   .restart-button {
-    width: 15em;
+    border-radius: 10px;
+    width: 10em;
     height: 3em;
     color: white;
-    background-color: #5168e9;
+    background-color: blue;
     border: 0;
   }
   
@@ -69,8 +70,7 @@ body {
   }
 
   .transparent {
-    color: #000; /* Fallback for older browsers */
-    color: rgba(0, 0, 0, 0);
+    visibility: hidden;
   }
 
   .pad {
